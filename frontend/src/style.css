@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap');
+
+:root {
+  --primary: #000000;
+  --secondary: #2D3748;
+  --bg-color: #FFFFFF;
+  --bg-off: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-main: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --accent-gold: #F6C87A;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --blur: blur(24px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.52)), url('/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#main-content {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+/* Stepper (Modern Glass) */
+.stepper {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: var(--transition);
+}
+
+.step.active {
+  color: white;
+}
+
+.step-circle {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.active .step-circle {
+  background: white;
+  box-shadow: 0 0 15px white;
+  transform: scale(1.4);
+}
+
+/* Glass Panels */
+section.container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 80px 60px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  margin-bottom: 80px;
+}
+
+#view-home {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  text-align: center;
+}
+
+#view-home h1 {
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 24px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#view-home p {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+  font-size: 1.25rem;
+}
+
+/* Cottage Cards (Nested Glass) */
+.cottage-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 32px;
+  border-radius: 16px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.cottage-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.cottage-card.selected {
+  background: white;
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.cottage-card.reserved {
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 0.6;
+  filter: grayscale(1);
+  pointer-events: none;
+  border-color: transparent;
+}
+
+/* Inputs & Forms */
+input[type="date"], input[type="text"] {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+  transition: var(--transition);
+}
+
+input:focus {
+  outline: none;
+  background: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons */
+button {
+  background: var(--primary);
+  color: white;
+  border-radius: 100px;
+  padding: 18px 40px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background: transparent;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+button.secondary:hover {
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--primary);
+}
+
+#btn-early-booking {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+#btn-early-booking:hover {
+  background: white;
+  color: black;
+}
+
+/* Live Total Pill */
+.live-total-bar {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1001;
+}
+
+.live-total-pill {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.live-total-pill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transitions */
+.fade-in {
+  animation: modalIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Receipt Box */
+.receipt-box {
+  background: white; /* Keep official paper white */
+  padding: 60px;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
