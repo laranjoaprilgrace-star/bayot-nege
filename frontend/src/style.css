@@ -267,10 +267,4 @@ button.secondary:hover {
   display: none !important;
 }
 
-/* Receipt Box */
-.receipt-box {
-  background: white; /* Keep official paper white */
-  padding: 60px;
-  border-radius: 24px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-}
+/* Receipt Box — styled in Receipt.vue (scoped) */

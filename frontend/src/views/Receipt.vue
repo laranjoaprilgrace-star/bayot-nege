@@ -21,40 +21,207 @@ const returnHome = () => {
 <template>
   <section id="view-receipt" class="container fade-in">
     <div class="receipt-box fade-in">
-      <div style="text-align: center; margin-bottom: 60px;">
-         <h2 style="margin-bottom: 16px;">Confirmed</h2>
-         <p style="color: var(--text-muted); font-weight: 300;">Safe travels. Your booking is secure.</p>
-      </div>
-      <div id="receipt-details" style="font-family: inherit;">
-        <div style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <span style="color: var(--text-muted); font-size: 0.8rem;">REF #</span>
-            <span style="font-weight: 600; letter-spacing: 0.05em;">{{ state.refNumber.toUpperCase() }}</span>
-          </div>
-          <div style="display: flex; justify-content: space-between;">
-            <span style="color: var(--text-muted); font-size: 0.8rem;">TRANSACTION DATE</span>
-            <span style="font-weight: 300;">{{ timestamp }}</span>
-          </div>
-        </div>
-        
-        <div style="margin-bottom: 48px;">
-          <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 16px;">Itinerary</div>
-          <div style="font-weight: 300; line-height: 1.8;">
-            Group / Customer: <span style="font-weight: 500;">{{ state.groupName }}</span><br>
-            Event: <span style="font-weight: 400;">{{ state.eventType || '—' }}</span><br>
-            Cottage {{ state.selectedCottage?.id }}<br>
-            Date: {{ displayDate }}<br>
-            Duration: Full Day (12am - 11:59pm)<br>
-            <span v-if="state.hasGrill">Grill Service (₱300)</span>
-          </div>
-        </div>
 
-        <div style="border-top: 1px solid var(--border-color); padding-top: 24px; display: flex; justify-content: space-between; font-size: 1.25rem;">
-          <span style="font-weight: 200;">Amount Paid</span>
-          <span style="font-weight: 500;">₱{{ total.toLocaleString() }}</span>
+      <!-- Header -->
+      <div class="receipt-header">
+        <div class="receipt-check">✓</div>
+        <h2 class="receipt-title">Booking Confirmed</h2>
+        <p class="receipt-sub">Safe travels. Your reservation is secure.</p>
+      </div>
+
+      <!-- Ref & Date -->
+      <div class="receipt-section">
+        <div class="receipt-row">
+          <span class="receipt-label">Reference No.</span>
+          <span class="receipt-value bold">{{ state.refNumber.toUpperCase() }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Transaction Date</span>
+          <span class="receipt-value">{{ timestamp }}</span>
         </div>
       </div>
-      <button @click="returnHome" style="width: 100%; margin-top: 60px;">Return Home</button>
+
+      <div class="receipt-divider"></div>
+
+      <!-- Guest Info -->
+      <div class="receipt-section">
+        <div class="receipt-section-title">Guest Details</div>
+        <div class="receipt-row">
+          <span class="receipt-label">Name / Group</span>
+          <span class="receipt-value bold">{{ state.groupName }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Event Type</span>
+          <span class="receipt-value">{{ state.eventType || '—' }}</span>
+        </div>
+      </div>
+
+      <div class="receipt-divider"></div>
+
+      <!-- Booking Info -->
+      <div class="receipt-section">
+        <div class="receipt-section-title">Reservation</div>
+        <div class="receipt-row">
+          <span class="receipt-label">Cottage</span>
+          <span class="receipt-value bold">
+            Cottage {{ state.selectedCottage?.id }}
+            <span class="receipt-badge">{{ state.selectedCottage?.tier }}</span>
+          </span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Date</span>
+          <span class="receipt-value">{{ displayDate }}</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Duration</span>
+          <span class="receipt-value">Full Day (12am – 11:59pm)</span>
+        </div>
+        <div class="receipt-row" v-if="state.hasGrill">
+          <span class="receipt-label">Add-on</span>
+          <span class="receipt-value">Grill Service</span>
+        </div>
+      </div>
+
+      <div class="receipt-divider"></div>
+
+      <!-- Total -->
+      <div class="receipt-total-row">
+        <span class="receipt-total-label">Total Paid</span>
+        <span class="receipt-total-amount">₱{{ total.toLocaleString() }}</span>
+      </div>
+
+      <button @click="returnHome" class="receipt-btn">Return Home</button>
     </div>
   </section>
 </template>
+
+<style scoped>
+.receipt-box {
+  background: #ffffff;
+  padding: 44px 40px 40px;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+  color: #1a1a1a;
+}
+
+/* Header */
+.receipt-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.receipt-check {
+  width: 48px;
+  height: 48px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0 auto 14px;
+}
+.receipt-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+.receipt-sub {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 300;
+}
+
+/* Sections */
+.receipt-section {
+  margin-bottom: 16px;
+}
+.receipt-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+.receipt-label {
+  font-size: 0.82rem;
+  color: #999;
+  white-space: nowrap;
+}
+.receipt-value {
+  font-size: 0.88rem;
+  color: #1a1a1a;
+  text-align: right;
+  font-weight: 400;
+}
+.receipt-value.bold {
+  font-weight: 600;
+}
+.receipt-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: #f0f0f0;
+  color: #555;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+/* Divider */
+.receipt-divider {
+  border: none;
+  border-top: 1px solid #ebebeb;
+  margin: 18px 0;
+}
+
+/* Total */
+.receipt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.receipt-total-label {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 400;
+}
+.receipt-total-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Button */
+.receipt-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.receipt-btn:hover {
+  background: #333;
+}
+</style>

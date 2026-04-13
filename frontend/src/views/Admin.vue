@@ -475,6 +475,7 @@ const logout = () => {
   padding: 22px 20px;
   border: 1px solid rgba(0,0,0,0.055);
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  color: #1a1a1a;
 }
 
 .adm-kpi--accent {
