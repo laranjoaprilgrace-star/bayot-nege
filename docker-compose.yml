@@ -1,0 +1,15 @@
+services:
+  booking-app:
+    build: .
+    ports:
+      - "5173:5173"
+      - "3001:3001"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./server/database.sqlite:/app/server/database.sqlite
+    environment:
+      - NODE_ENV=development
+      - PAYMONGO_SECRET_KEY=${PAYMONGO_SECRET_KEY:-sk_test_placeholder}
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key}
+    restart: always

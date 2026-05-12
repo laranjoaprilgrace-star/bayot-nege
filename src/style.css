@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+* {
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/src/assets/main-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #0f172a;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.input-field {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #0f172a;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.05);
+}
+
+.btn-primary {
+  background: #0f172a;
+  color: white;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scan-line {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.3s ease-out forwards;
+}
+
+.animate-scan-line {
+  animation: scan-line 2s linear infinite;
+}
+
+/* Auth Sliding Classes */
+#authContainer div {
+  backface-visibility: hidden;
+}
+
+#overlayContainer {
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  transition: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+#authContainer.active-signup #overlayContainer {
+  transform: translateX(-100%);
+  border-radius: 0 3rem 3rem 0;
+}
+
+.auth-overlay-bg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('/src/assets/login-banner.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e2e8f0;
+}
+
+/* ── Mobile Responsive Utilities ─────────────────────────── */
+@media (max-width: 767px) {
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  body  { background-attachment: scroll; }
+  #adminSidebar { height: 100dvh; }
+  
+  #authContainer {
+    height: auto !important;
+    min-height: auto !important;
+    border-radius: 2rem !important;
+    margin-top: 5rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  #loginPanel, #signupPanel {
+    position: relative !important;
+    width: 100% !important;
+    transform: none !important;
+    height: auto !important;
+    min-height: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  
+  #overlayContainer {
+    display: none !important;
+  }
+}
+button, [role="button"] { touch-action: manipulation; }

@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+server/database.sqlite
+package-lock.json
+*.md
+.dockerignore
+Dockerfile
+docker-compose.yml
