@@ -8,8 +8,8 @@ dist/
 php-server/database.sqlite
 
 # Environment variables (NEVER commit this!)
-# ⚠️ Add your .env variables directly in Railway dashboard instead
-# .env   ← uncomment this line before pushing to public GitHub
+# ⚠️ Set these directly in Railway dashboard
+.env
 
 # Logs
 *.log
